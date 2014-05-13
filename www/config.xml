@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.pokerrun.self" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>PokerRun.org Self Checkin</name>
+<widget id="org.pokerrun.selfcheckin" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>PokerRun Self Checkin</name>
     <description>
         Allows Poker Run participants to check themselves in at stops by scanning a QR code.
     </description>
