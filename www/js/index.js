@@ -50,7 +50,7 @@ var dbi = {
         if(userEmail != '' && userPass != ''){
             var userData = {
                 email:userEmail,
-                pass:userPass,
+                password:userPass,
             };
             $.ajax({
                 type: "POST",
@@ -67,7 +67,7 @@ var dbi = {
                         $('#user-pass').val('');
                     }
                     
-                    $.mobile.changePage('#page-status');
+                    
                   
                 });
         }
