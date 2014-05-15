@@ -68,7 +68,7 @@ var scans = {
     scan: function() {
        // logger('scanning');
        
-        scanner.scan( function (result,permStorage) { 
+        scanner.scan( function (result) { 
            // is a QR code
            if(result.format === "QR_CODE") {
                
