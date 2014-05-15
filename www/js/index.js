@@ -60,7 +60,7 @@ var dbi = {
                 .done(function( msg ) {
                      
                     if(typeof msg.data.error == 'undefined' || msg.data.error == '' ){
-                         $.mobile.changePage($('#page-location'));
+                         $.mobile.changePage($('#page-menu'));
                     }else{
                         // handle the error
                         alert(msg.data.error);
