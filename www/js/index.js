@@ -16,6 +16,7 @@ var init = function(){
 
 function onDeviceReady(){
     scans.init();
+    dbi.init();
 }
 /*
  * function: backKeyDown
@@ -115,7 +116,7 @@ var scans = {
         console.log(isLoggedIn);
         
         try{
-        if(!isLoggedIn){
+            if(!isLoggedIn){
                 console.log('getLogin returned false');
                 $.mobile.changePage('#page-login');
             }else{
