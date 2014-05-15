@@ -14,7 +14,7 @@ var init = function(){
 };
 
 function onDeviceReady(){
-    scans.init();
+    //scans.init();
     //dbi.init();
 }
 /*
