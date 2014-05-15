@@ -73,9 +73,9 @@ var scans = {
            if(result.format === "QR_CODE") {
                
             
-            userData = JSON.parse(permStorage.getItem('logininfo')); 
+            var userData = JSON.parse(permStorage.getItem('logininfo')); 
             var stopData = JSON.parse(result.text);
-            stopData["user_id"] = userData['user_id']; 
+            stopData["user_id"] = userData.data.Account['id']; 
             //var event_id = userData["event_id"];
             
             for(x in stopData){
@@ -96,7 +96,8 @@ var scans = {
                             }
                         }*/
                     if(typeof msg.data.error == 'undefined' || msg.data.error == '' ){
-                        $('#status-message').html(msg.data.status+"! <br> "+msg.data.name+" has Successfuly Checked-In!");
+                        userData = JSON.parse(permStorage.getItem('logininfo')); 
+                        $('#status-message').html(msg.data.status+"! <br> "+userData.data.Account['firstname']+" "+userData.data.Account['lastname'] +" has Successfuly Checked-In for this stop!");
                     }else{
                         // handle the error
                         $('#status-message').html("Check-In Error! <br>"+msg.data.error);
