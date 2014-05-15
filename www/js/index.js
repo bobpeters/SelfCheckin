@@ -4,10 +4,9 @@ var loggedIn = false;
 var apiURL = "http://pokerrun.org/api/";
 var debugging = true;
 var scanner = {};
-var dbi = {};
-var logger = {};
 
 var init = function(){
+    console.log('Init App...');
     document.addEventListener("backbutton", backKeyDown, true);
     document.addEventListener("deviceready", onDeviceReady, false);
     
@@ -107,10 +106,10 @@ var dbi = {
 //scanner object 
 var scans = {
     init: function(){
-        
+        console.log('Initializing Scanner app');
         scanner = cordova.require("cordova/plugin/BarcodeScanner");
         
-        console.log('Scanner Initialized');
+        console.log('Scanner is now Initialized');
         
         var isLoggedIn = dbi.getLogin();
         console.log(isLoggedIn);
