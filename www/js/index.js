@@ -120,4 +120,68 @@ var scans = {
         } );
     }
 };
+
+// local database object
+var dbi = {
+    init: function(){
+       logger('DBI init'); 
+    },
+    login: function(){
+        //participantlogin
+        var userEmail = $('#user-email').val();
+        var userPass = $('#user-pass').val();
+        if(userEmail != '' && userPass != ''){
+            var userData = {
+                email:userEmail,
+                password:userPass,
+            };
+            $.ajax({
+                type: "POST",
+                url: apiURL+'participantlogin.json',
+                data: userData
+                })
+                .done(function( msg ) {
+                     
+                    if(typeof msg.data.error == 'undefined' || msg.data.error == '' ){
+                        dbi.setLogin(msg);
+                        $.mobile.changePage($('#page-menu'));
+                    }else{
+                        // handle the error
+                        alert(msg.data.error);
+                        $('#user-pass').val('');
+                    }
+                    
+                    
+                  
+                });
+        }
+    },
+    getLogin: function(){
+        
+        var linfo = permStorage.getItem('logininfo');
+        if(!linfo){
+            logger('getLogin returned false');
+            return false;
+        }else{
+            logger('getLogin returned true');
+            return true;
+        }
+        
+        
+    },
+    getLoginInfo: function(){
+      return JSON.parse(permStorage.getItem('logininfo'));  
+    },
+    setLogin: function(login){
+        logger(login);
+        if(login !== ''){
+            permStorage.setItem('logininfo',JSON.stringify(login));
+        }
+    },
+    logout: function(){
+        permStorage.clear();
+        $.mobile.changePage($('#page-login'));
+    }
+};
+
 $(document).ready(init);
