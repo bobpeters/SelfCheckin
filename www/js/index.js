@@ -9,7 +9,7 @@ var logger = function(msg){
     if(debugging){
         logger(msg);
     }
-}
+};
 
 var init = function(){
     logger('Init App...');
@@ -133,7 +133,7 @@ var dbi = {
         if(userEmail != '' && userPass != ''){
             var userData = {
                 email:userEmail,
-                password:userPass,
+                password:userPass
             };
             $.ajax({
                 type: "POST",
