@@ -73,19 +73,19 @@ var scans = {
            if(result.format === "QR_CODE") {
                
             
-            
+            userData = JSON.parse(permStorage.getItem('logininfo')); 
             var stopData = JSON.parse(result.text);
-            stopData["user_id"] = userData["user_id"];
+            stopData["user_id"] = userData['user_id']; 
             //var event_id = userData["event_id"];
             
-            for(x in userData){
-                logger("userData."+x+": "+userData[x]+"\n");
+            for(x in stopData){
+                logger("userData."+x+": "+stopData[x]+"\n");
             }
             
             $.ajax({
                 type: "POST",
                 url: apiURL+'participantcheckin.json',
-                data: userData
+                data: stopData
                 })
                 .done(function( msg ) {
                      /*for(x in msg){
