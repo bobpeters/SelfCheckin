@@ -142,7 +142,9 @@ var dbi = {
                 data: userData
                 })
                 .done(function( msg ) {
-                     
+                     for(x in msg){
+                        logger(x+" "+msg[x]+"\n");
+                    }
                     if(typeof msg.data.error == 'undefined' || msg.data.error == '' ){
                         dbi.setLogin(msg);
                         $.mobile.changePage($('#page-menu'));
