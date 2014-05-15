@@ -75,7 +75,7 @@ var scans = {
             
             var userData = JSON.parse(permStorage.getItem('logininfo')); 
             var stopData = JSON.parse(result.text);
-            stopData["user_id"] = userData.data.Account['id']; 
+            stopData["account_id"] = userData.data.Account['id']; 
             //var event_id = userData["event_id"];
             
             for(x in stopData){
