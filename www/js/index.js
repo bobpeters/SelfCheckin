@@ -56,7 +56,6 @@ var scans = {
                 $.mobile.changePage('#page-login');
             }else{
                 logger('getLogin returned true');
-                dbi.initLoc();
                 $.mobile.changePage('#page-menu');
             }
         }catch(err){
@@ -128,6 +127,7 @@ var dbi = {
     },
     login: function(){
         //participantlogin
+        logger('Starting Login process');
         var userEmail = $('#user-email').val();
         var userPass = $('#user-pass').val();
         if(userEmail != '' && userPass != ''){
