@@ -6,9 +6,10 @@ var debugging = true;
 var scanner = {};
 
 var logger = function(msg){
-    if(debugging){
-        logger(msg);
+    if(debugging == true){
+        console.log(msg);
     }
+    return true;
 };
 
 var init = function(){
@@ -32,7 +33,7 @@ function onDeviceReady(){
  * 
  */
 function backKeyDown(){
-	logger('back button');
+	logger('back button down');
         var activePage = $.mobile.activePage[0].id;
         if(activePage != 'page-login'){
             $.mobile.changePage('#page-menu');
