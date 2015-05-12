@@ -41,12 +41,12 @@ $prefLocation = mysql_real_escape_string(stripcslashes($_POST['location']));
 
 //generate hash for this user
 $sessionCode = getToken(50);        
-$uSql = "REPLACE INTO siteContacts VALUES ('','$name','$email','$phone',$prefLocation,'$sessionCode',NOW()) "
+$uSql = "INSERT INTO siteContacts VALUES ('','$name','$email','$phone',$prefLocation,'$sessionCode',NOW()) "
         . "ON DUPLICATE KEY UPDATE "
         . "phone='$phone', "
         . "prefLocation= $prefLocation,"
         . "date = NOW()";
-$res = $db->query($uSql);
+$res = $db->query($uSql) or die (mysql_error());
 if($res){
     $uid = $db->insert_id();
 }
