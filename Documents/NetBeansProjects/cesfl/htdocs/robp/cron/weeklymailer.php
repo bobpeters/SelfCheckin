@@ -1,6 +1,6 @@
 <?php
 require_once '../include/inc.config.php';
-include_once(LIB.'mailer.class.php');
+include_once(BASEPATH.'mailer.class.php');
 
 $daysPast = 10;
 $uid = 6;
@@ -29,7 +29,7 @@ while($row = $db->fetch_assoc($uRes)){
     
     $jobs = getNewJobs($db, $uid, $prefLocation,$daysPast);
     
-    echo $jobs;
+    //echo $jobs;
     if($jobs != false){
         $message = '<div style="color: #7c7c7c; font-size:13px; font-family: Roboto, sans-serif;">'
                 . '<p>Hello, <br>'
@@ -44,7 +44,7 @@ while($row = $db->fetch_assoc($uRes)){
         $message .= '<div style="color: #7c7c7c; font-size:13px; font-family: Roboto, sans-serif;">'
                 . 'If you have received this message in error, or no longer wish to subscribe to this service, please follw this link to <a href="http://cesfl.com/unsubscribe.php?optcode='.$optCode.'">unsubscribe</a>.'
                 . '</div>';
-        $my_mail = new attach_mailer('Criterion Executive Search', 'no-reply@cesfl.com', $email, $cc = "", $bcc = "", 'New Job Listings at '.SITE, stripslashes($mailMessage));
+        $my_mail = new attach_mailer('Criterion Executive Search', 'no-reply@cesfl.com', $email, $cc = "", $bcc = "", 'New Job Listings at '.SITE, stripslashes($message));
         $my_mail->process_mail();
     }
 }
