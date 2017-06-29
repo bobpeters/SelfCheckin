@@ -73,13 +73,18 @@ include_once 'inc.header.php';
                             <img src="<?=$img['uri']?>">
                         </div>
                     </div>
+                </div>
                     <div class="row">
                         <div class="col-md-12">
                             <h5><?=$image['title']?></h5>
                         </div>
+                    </div>
+                    <div class="row">  
                         <div class="col-md-12">
                             <h5><?=$image['caption']?></h5>
                         </div>
+                    </div>
+                    <div class="row">    
                         <div class="col-md-6">
                             id: <?=$image['id']?>
                         </div>
@@ -98,7 +103,7 @@ include_once 'inc.header.php';
                     </div>
                 </div>
             </div>
-        </div>
+        
         <?php
             if($nr % 4 == 0){
                 echo "</div><div class=\"row\">";
