@@ -106,7 +106,7 @@ include_once 'inc.header.php';
         $nr++;
         }
         ?>
-    </div>
+    
 </div>
 
 <?php
