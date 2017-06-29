@@ -15,6 +15,7 @@ $remote = new Api;
 
 $action = isset($_REQUEST['action']) ? trim(stripslashes($_REQUEST['action'])):'';
 
+
 switch($action){
     case 'get_image_requests':
         $remote->getImageRequests($_REQUEST['image_request_type']);
@@ -48,6 +49,67 @@ switch($action){
             
 }
 
+
 //header('Content-Type: application/json');
-$return_type = (isset($_REQUEST['return_type'])) ? trim($_REQUEST['return_type']):'json';
-print_r( $remote->getResponse($return_type));
+$return_type = (isset($_REQUEST['return_type'])) ? trim($_REQUEST['return_type']):'array';
+$response = $remote->getResponse($return_type);
+include_once 'inc.header.php';
+?>
+
+<div class="container">
+    <div class="row">
+        <?php
+        $nr = 1;
+        foreach($response['items'] as $image){
+            $img = (array) $image['display_sizes'][0];
+            $dim = (array) $image['max_dimensions'];
+            //print_r($image);
+        ?>
+        <div class="col-md-3">
+            <div class="img-container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="img-align">
+                            <img src="<?=$img['uri']?>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5><?=$image['title']?></h5>
+                        </div>
+                        <div class="col-md-12">
+                            <h5><?=$image['caption']?></h5>
+                        </div>
+                        <div class="col-md-6">
+                            id: <?=$image['id']?>
+                        </div>
+                        <div class="col-md-6">
+                            Max Dm: <?=$dim['width']?> x <?=$dim['height']?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="purchase.php" method="post" id="img<?=$image['id']?>">
+                                <input type="hidden" name="imgid" value="<?=$image['id']?>">
+                                <input type="hidden" name="nonce" value="<?=VOODOO_API_KEY?>">
+                                <btn type="submit" class="btn btn-lrg btn-success" >Purchase</btn>
+                            </form>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+            if($nr % 4 == 0){
+                echo "</div><div class=\"row\">";
+            }
+        $nr++;
+        }
+        ?>
+    </div>
+</div>
+
+<?php
+        include_once 'inc.footer.php';
+
+ob_end_flush();
