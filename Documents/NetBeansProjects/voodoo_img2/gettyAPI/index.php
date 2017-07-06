@@ -63,14 +63,18 @@ include_once 'inc.header.php';
         foreach($response['items'] as $image){
             $img = (array) $image['display_sizes'][0];
             $dim = (array) $image['max_dimensions'];
+            $uriParts = explode('?', $img['uri'], 2);
+            $imgURI = $uriParts[0];
             //print_r($image);
         ?>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-2">
             <div class="img-container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="img-align">
-                            <img src="<?=$img['uri']?>">
+                            <a href="<?=$imgURI?>" rel="group1" title="<?=addslashes($image['title'])?>" class="getty-gallery" data-fancybox="gallery">
+                                <img class="img-responsive" src="<?=$imgURI?>" alt="<?=addslashes($image['title'])?>">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -89,15 +93,20 @@ include_once 'inc.header.php';
                             id: <?=$image['id']?>
                         </div>
                         <div class="col-md-6">
-                            Max Dm: <?=$dim['width']?> x <?=$dim['height']?>
+                            <span class="desc-text"><?=$dim['width']?> x <?=$dim['height']?></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="purchase.php" method="post" id="img<?=$image['id']?>">
-                                <input type="hidden" name="imgid" value="<?=$image['id']?>">
-                                <input type="hidden" name="nonce" value="<?=VOODOO_API_KEY?>">
-                                <btn type="submit" class="btn btn-lrg btn-success" >Purchase</btn>
+                            <form action="ajax.php" method="post" id="img<?=$image['id']?>">
+                                <input type="hidden" name="fileId" value="<?=$image['id']?>">
+                                <input type="hidden" name="width" value="<?=$dim['width']?>">
+                                <input type="hidden" name="height" value="<?=$dim['height']?>">
+                                <input type="hidden" name="private_key" value="<?=VOODOO_API_KEY?>">
+                                <input type="hidden" name="fileSaveAs" value="<?=stripslashes(trim($_REQUEST['words']))?>">
+                                <input type="hidden" name="action" value="proxy">
+                                <input type="hidden" name="type" value="purchase">
+                                <input type="submit" class="btn btn-lrg btn-success" name="purchase" value="Purchase" >
                             </form>
                         </div> 
                     </div>
@@ -113,6 +122,7 @@ include_once 'inc.header.php';
         ?>
     
 </div>
+    
 
 <?php
         include_once 'inc.footer.php';
