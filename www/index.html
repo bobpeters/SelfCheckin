@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PokerRun.org Scanner and Field Check-in Applications</title>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=356, height=device-height, target-densitydpi=medium-dpi" />
+        
+        <link rel="stylesheet" href="css/pokerrun.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.custom.structure.min.css" /> 
+        <link rel="stylesheet" href="css/index.css" />
+        
+        <script type="text/javascript" src="js/jquery.js" ></script>
+        <script type="text/javascript" src="cordova.js"> </script>
+        <script type="text/javascript" src="barcodescanner.js"></script>
+        <script src="js/jquery.mobile.custom.js"></script> 
+        <script type="text/javascript" src="js/index.js"></script>
+    </head>
+    <body>
+       
+        <!-- login page -->
+        <div data-role="page" id="page-login">
+            <div data-role="header" data-position="fixed" data-theme="a">
+                <div class="head-content">
+                    
+                    <img id="btn-home" src="img/nav-icon-sml.png"> 
+                    <span>PokerRun.org Login</span>
+                    
+                </div>
+            </div>
+            <div data-role="content">
+                <div class="div-widget">
+                    <span>Before being able to check yourself in at stops, you must first login using the credentials you provided when you purchased your hand(s).</span>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="user-email">Email</label>
+                    <input type="email" id="user-email" data-theme="a">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="user-pass">Password</label>
+                    <input type="password" id="user-pass" data-theme="a">
+                </div>
+                
+                <a data-role="button" id="submit-manual" data-theme="a" onclick="dbi.login();">Login</a>
+                
+            </div>
+        </div>
+        <!-- end login page-->
+        
+        <!-- launch pad page -->
+        <div data-role="page" id="page-menu">
+            <div data-role="header" data-position="fixed" data-theme="a">
+                <div class="head-content">
+                    <img id="btn-home" src="img/nav-icon-sml.png"> 
+                    <span>PokerRun.org Menu</span>
+                </div>
+            </div>
+            <div data-role="content" id="pg1">
+                
+                <div class="ui-grid-a">
+                    <ul id="main-menu">
+                <li>
+                    <a href="#" id="btn-scan" onclick="scans.scan();"><span>Check-in</span></a>
+                </li>
+                <li>
+                    <a href="#" id="btn-logout" onclick="dbi.logout();"><span>Logout</span></a>
+                </li>
+            </ul>
+                   
+                </div>
+                
+                
+            </div>
+        </div>
+        
+        <!-- end launch pad -->
+        
+    <!-- check in page -->
+    <div data-role="modal" id="page-status" data-theme="a" data-title="Pages Status">
+            <div data-role="header" data-position="fixed" data-theme="a">
+                <div class="head-content">
+                    
+                    <img id="btn-home" src="img/nav-icon-sml.png"> 
+                    <span>PokerRun.org</span>
+                    
+                </div>
+            </div>
+            <div data-role="content">
+                <div class="div-widget">
+                    <span id="status-message">
+                        
+                    </span>
+                </div>
+            </div>
+            <a data-role="button" data-theme="a" onclick="$.mobile.changePage($('#page-menu'));">Back</a>
+    </div>
+    </body>
+        
+        
+       
+    
+</html>
